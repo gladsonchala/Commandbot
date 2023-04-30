@@ -6,6 +6,16 @@ import subprocess
 # Initialize the bot with your Telegram API token
 bot = telebot.TeleBot("5806659815:AAEMRFDhJTs8lM8KOGc4JxWnP2bH7VOoAo4")
 
+
+# Define the welcome message
+welcome_message = 'Welcome to the OMG Bot chatbot! How can I assist you today?'
+
+# Define the handler for the /start command
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    user_id = message.chat.id
+    bot.reply_to(message, welcome_message)
+
 # Handler for the /run command
 @bot.message_handler(commands=['run'])
 def run_command(message):
