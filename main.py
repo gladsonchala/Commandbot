@@ -30,21 +30,5 @@ def run_command(message):
     except Exception as e:
         bot.reply_to(message, f"Error: {e}")
 
-# Handler for the /store command
-@bot.message_handler(commands=['store'])
-def store_file(message):
-    # Get the file from the message
-    file = message.document.file_id
-
-    # Download the file
-    downloaded_file = bot.download_file(bot.get_file(file).file_path)
-
-    # Save the file to disk
-    with open("filename.extension", "wb") as f:
-        f.write(downloaded_file)
-
-    # Send a confirmation message
-    bot.reply_to(message, "File stored successfully!")
-
 # Start the bot
 bot.polling()
