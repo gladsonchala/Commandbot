@@ -8,7 +8,7 @@ bot = telebot.TeleBot("5806659815:AAEMRFDhJTs8lM8KOGc4JxWnP2bH7VOoAo4")
 
 
 # Define the welcome message
-welcome_message = 'Welcome to the OMG Bot chatbot! How can I assist you today?'
+welcome_message = 'Welcome to the Cmd Bot!'
 
 # Define the handler for the /start command
 @bot.message_handler(commands=['start'])
