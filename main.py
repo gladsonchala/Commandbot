@@ -1,10 +1,10 @@
-#5806659815:AAEMRFDhJTs8lM8KOGc4JxWnP2bH7VOoAo4
+#6067882954:AAFO86WP_fdXNCTmgNqUJ7AmN7N3AW5PKfI
 
 import telebot
 import subprocess
 
 # Initialize the bot with your Telegram API token
-bot = telebot.TeleBot("5806659815:AAEMRFDhJTs8lM8KOGc4JxWnP2bH7VOoAo4")
+bot = telebot.TeleBot("6067882954:AAFO86WP_fdXNCTmgNqUJ7AmN7N3AW5PKfI")
 
 
 # Define the welcome message
