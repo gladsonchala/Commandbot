@@ -13,10 +13,8 @@ def send_welcome(message):
 @bot.message_handler(content_types=['document', 'video', 'audio', 'photo'])
 def handle_file(message):
     file_info = bot.get_file(message.document.file_id)
-    file_url = f'https://api.telegram.org/file/bot{TOKEN}/{file_info.file_path}'
-    response = requests.post('https://file.io/', files={'file': open(file_url, 'rb')})
-    link = response.json()['link']
-    bot.reply_to(message, f"Here is ur download link: {link}")
+    file_url = f'https://api.telegram.org/file/bot{TOKEN}/{file_info.file_path}
+    bot.reply_to(message, f"Here is ur download link: {file_url}")
     os.remove(file_url)
 
 bot.polling()
