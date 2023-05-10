@@ -17,6 +17,6 @@ def handle_file(message):
     response = requests.post('https://file.io/', files={'file': open(file_url, 'rb')})
     link = response.json()['link']
     bot.reply_to(message, f"Here is ur download link: {link}")
-    os.remove(file_url)
+    os.remove(file_url)
 
 bot.polling()
