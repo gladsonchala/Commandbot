@@ -1,35 +1,22 @@
-import os
-import time
+#bot = ('6115548318:AAF2Sw0DsWUUOVBKoH4VxhvAjLQJStC-zdU'
 import telebot
-from telebot import types
+import requests
+import os
 
-# Set up the Telegram bot
-bot = telebot.TeleBot('6115548318:AAF2Sw0DsWUUOVBKoH4VxhvAjLQJStC-zdU')
+TOKEN = '6115548318:AAF2Sw0DsWUUOVBKoH4VxhvAjLQJStC-zdU'
+bot = telebot.TeleBot(TOKEN)
 
-# Define a function to handle incoming files
-@bot.message_handler(content_types=['document', 'video', 'audio', 'voice', 'photo'])
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    bot.reply_to(message, "Welcome to my file converter bot! Send me any file and I'll give you a direct download link.")
+
+@bot.message_handler(content_types=['document', 'video', 'audio', 'photo'])
 def handle_file(message):
-    # Download the file
-    file_info = bot.get_file(message.document.file_id)
-    file_path = file_info.file_path
-    downloaded_file = bot.download_file(file_path)
+    file_info = bot.get_file(message.document.file_id)
+    file_url = f'https://api.telegram.org/file/bot{TOKEN}/{file_info.file_path}'
+    response = requests.post('https://file.io/', files={'file': open(file_url, 'rb')})
+    link = response.json()['link']
+    bot.reply_to(message, f"Here's your download link: {link}")
+    os.remove(file_url)
 
-    # Generate a direct link to the file
-    file_extension = os.path.splitext(file_path)[-1]
-    direct_link = f'https://api.telegram.org/file/bot{bot.token}/{file_path}'
-
-    # Save the file to the cache directory
-    file_name = f'{message.document.file_id}{file_extension}'
-    file_path = os.path.join(bot.cache_dir, file_name)
-    with open(file_path, 'wb') as f:
-        f.write(downloaded_file)
-
-    # Send the direct link to the user
-    bot.reply_to(message, direct_link)
-
-    # Delete the file after 1 hour
-    time.sleep(3600)
-    os.remove(file_path)
-
-# Start the bot
 bot.polling()
