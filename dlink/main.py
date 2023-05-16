@@ -30,7 +30,7 @@ bot = telebot.TeleBot('6097684986:AAEHbipv0Sv0hm9LOV7qqZbomHstElFD6Pk')
 admin_id = '5214644649'
 
 @bot.message_handler(commands=['start']) 
- def send_welcome(message): 
+def send_welcome(message): 
      bot.reply_to(message, "Welcome to Udemy courses coupon bot.") 
  
 
