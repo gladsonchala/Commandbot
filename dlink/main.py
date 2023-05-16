@@ -23,6 +23,7 @@ bot.polling()
 import telebot
 import requests
 from bs4 import BeautifulSoup
+import time
 
 # replace YOUR_API_TOKEN with your Telegram bot API token
 bot = telebot.TeleBot('6097684986:AAEHbipv0Sv0hm9LOV7qqZbomHstElFD6Pk')
