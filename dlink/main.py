@@ -29,6 +29,11 @@ import time
 bot = telebot.TeleBot('6097684986:AAEHbipv0Sv0hm9LOV7qqZbomHstElFD6Pk')
 admin_id = '5214644649'
 
+@bot.message_handler(commands=['start']) 
+ def send_welcome(message): 
+     bot.reply_to(message, "Welcome to Udemy courses coupon bot.") 
+ 
+
 def get_free_course():
     url = 'https://www.real.discount/udemy-coupon/'
     response = requests.get(url)
