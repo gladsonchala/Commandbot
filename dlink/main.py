@@ -53,4 +53,5 @@ while True:
     time.sleep(3600)
 
 # Start polling for messages from users.
+print ("Deployed")
 bot.polling()
